@@ -3389,7 +3389,7 @@ void t_java_generator::generate_service_service_client(t_service* tservice) {
     indent(f_service_) << "  });" << endl;
 
     indent_down();
-    indent(f_service_) << "  } catch (TException e) {" << endl;
+    indent(f_service_) << "  } catch (org.apache.thrift.TException e) {" << endl;
     indent(f_service_) << "    return Future.exception(e);" << endl;
     indent(f_service_) << "  }" << endl;
 
@@ -5195,7 +5195,7 @@ string t_java_generator::boxed_type_name(t_type* type) {
     switch (((t_base_type*)type)->get_base()) {
     case t_base_type::TYPE_BOOL:
       return "Boolean";
-    case t_base_type::TYPE_BYTE:
+    case t_base_type::TYPE_I8:
       return "Byte";
     case t_base_type::TYPE_I16:
       return "Short";
