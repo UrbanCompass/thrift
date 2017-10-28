@@ -21,13 +21,29 @@ set -x
 
 git diff-files --quiet || (echo 'Git tree is dirty' ; false)
 
+GIT_SHA=`git rev-parse --verify HEAD`
+VERSION_NAME=1.0.0-${GIT_SHA:0:10}-compass-finagle
+
+# If you want to release:
+# - update the version name below,
+# - update version in configure.ac
+# - update version in lib/python/setup.py
+# - run this file as THRIFT_RELEASE=y ./compass_build_and_upload.sh
+if [ ! -z "${THRIFT_RELEASE:-}" ] ; then
+  VERSION_NAME=1.0.0.compass20171028
+  TODAYS_RELEASE="1.0.0.compass$(date +%Y%m%d)"
+  if [ "${VERSION_NAME}" != "${TODAYS_RELEASE}" ]; then
+    echo "Invalid version: ${VERSION_NAME} - should be: ${TODAYS_RELEASE}"
+    echo "If you are only testing, unset the environment_variable THRIFT_RELEASE"
+    false
+  fi
+fi
+
 git clean -fdx
 ./bootstrap.sh
 ./configure
 make
 
-GIT_SHA=`git rev-parse --verify HEAD`
-VERSION_NAME=1.0.0-${GIT_SHA:0:10}-compass-finagle
 if [ "$(uname)" = "Darwin" ] ; then
   MAC_VERSION=`sw_vers | sed -n "s/ProductVersion:[^0-9]*\\([0-9][0-9]*\\.[0-9][0-9]*\\)\\..*/\\1/p"`
   # HACK(ugo): reproduce build-support/bazel/thrift_compiler.bzl hack.
@@ -44,7 +60,7 @@ aws s3 cp compiler/cpp/thrift \
   s3://compass-build-support/bin/thrift/${PLATFORM}/${VERSION_NAME}/thrift \
   --acl public-read
 
-WORKSPACE_FNAME=${HOME}/development/uc2/urbancompass/WORKSPACE
+WORKSPACE_FNAME=${HOME}/development/urbancompass/WORKSPACE
 cat > ${WORKSPACE_FNAME} <<!
 load("//build-support/bazel:thrift_compiler.bzl", "thrift_compiler")
 
