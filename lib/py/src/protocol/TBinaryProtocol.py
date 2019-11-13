@@ -288,7 +288,7 @@ class TBinaryProtocolAcceleratedFactory(object):
     def __init__(self,
                  string_length_limit=None,
                  container_length_limit=None,
-                 fallback=True):
+                 fallback=False):
         self.string_length_limit = string_length_limit
         self.container_length_limit = container_length_limit
         self._fallback = fallback
