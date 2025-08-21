@@ -2,8 +2,8 @@ COMPASS instructions
 =============
 
 This is the Compass fork of Apache Thrift.
-We have a few changes that we manage in the compass-master branch, and
-we produce our own releases that we tag as v0.X.Y+compass
+We have a few changes that we manage in the `master` branch (which is forked from apache/thrift),
+and we produce our own releases that we tag as v0.X.Y+compass
 
 ## Releasing python code from here
 

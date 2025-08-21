@@ -238,7 +238,14 @@ bool parse_pyint(PyObject* o, T* ret, int32_t min, int32_t max) {
 
 template <typename Impl>
 inline bool ProtocolBase<Impl>::checkType(TType got, TType expected) {
-  if (expected != got) {
+  if ((got == T_LIST && expected == T_SET) ||
+      (got == T_SET && expected == T_LIST)) {
+    // HACK Compass
+    return true;
+  }
+  if (expected != got
+
+      ) {
     PyErr_SetString(PyExc_TypeError, "got wrong ttype while reading field");
     return false;
   }
