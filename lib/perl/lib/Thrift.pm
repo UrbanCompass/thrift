@@ -31,6 +31,6 @@ use warnings;
 #
 
 package Thrift;
-use version 0.77; our $VERSION = version->declare("v0.16.0+compass");
+use version 0.77; our $VERSION = version->declare("v0.16.1+compass");
 
 1;

@@ -24,6 +24,6 @@
 #pragma once
 #endif // _MSC_VER
 
-#define THRIFT_VERSION "0.16.0+compass"
+#define THRIFT_VERSION "0.16.1+compass"
 
 #endif // _THRIFT_VERSION_H_

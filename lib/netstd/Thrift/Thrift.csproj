@@ -40,8 +40,8 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>thrift.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
-    <Title>Apache Thrift 0.16.0+compass</Title>
-    <Version>0.16.0+compass.0</Version>
+    <Title>Apache Thrift 0.16.1+compass</Title>
+    <Version>0.16.1+compass.0</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageProjectUrl>http://thrift.apache.org/</PackageProjectUrl>
     <Authors>Apache Thrift Developers</Authors>
